@@ -11,7 +11,7 @@
  - 2. Than give below command to up project 
     - `docker-compose up`
 
-# Note : Please wait some moments to upload database after give `docker-compose up` command. It's usally take 1-2 min max.
+## Note : Please wait some moments to upload database after give `docker-compose up` command. It's usally take 1-2 min max.
 
 ## TEST URL 
 
