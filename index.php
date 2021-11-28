@@ -38,10 +38,19 @@
                         <p class="card-text text-danger font-weight-bold"> <?= $product['price_customer']; ?> </p> 
                     </div>
 
-                    <a class="btn btn-info">Buy product</a>
+                    <a class="btn btn-info buy" data-id=<?= $product['user_id'] ?>>Buy product</a>
                 </div>
             </div>
             <?php endforeach; ?>
         </div>
     </div>
 <?php include_once("elements/footer.php") ?>
+
+<script>
+    $('.buy').click(function(e)
+    {
+        e.preventDefault();
+        if($(this).attr('data-id') == '<?= $_SESSION['user']->id ?>')
+        alert("You are not able to buy your own product!");
+    })
+</script>
