@@ -1,0 +1,33 @@
+version: '3'
+volumes:
+    zoom_data:
+        driver: local
+        name: zoom_data
+services:
+    zoom_app_php:
+        build: .
+        container_name: zoom-app
+        ports:
+            - 9090:80
+        volumes:
+          - .:/var/www/html
+          - /var/www/html/vendor
+
+    zoom_app_db:
+        platform: linux/x86_64
+        image: mysql:latest
+        command: --default-authentication-plugin=mysql_native_password
+        volumes:
+            - ./DB/zoom_db.sql:/docker-entrypoint-initdb.d/price_plus_latest.sql
+        restart: always
+        environment: 
+            - MYSQL_ROOT_PASSWORD=secret
+            - MYSQL_DATABASE=zoom_db
+        
+    priceplus_phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            - 8080:80
+        environment:
+            - PMA_ARBITRARY=1
